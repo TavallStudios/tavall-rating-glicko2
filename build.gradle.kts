@@ -6,7 +6,11 @@ plugins {
 }
 
 group = "com.tjxjnoobie"
-version = "1.0.0"
+extra["versionTagPrefix"] = "tavall-rating-glicko2"
+apply(from = "gradle/git-version.gradle.kts")
+version = providers.gradleProperty("tavallVersion")
+    .orElse(extra["gitVersion"] as String)
+    .get()
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(25)
@@ -15,7 +19,12 @@ java {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
+}
+
+dependencies {
+    api("org.tavall:tavall-di:1.0.0")
 }
 
 dependencyLocking {
