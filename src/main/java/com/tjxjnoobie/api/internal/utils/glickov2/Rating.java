@@ -156,5 +156,3 @@ public class Rating implements IRating {
 
 
 
-
-
