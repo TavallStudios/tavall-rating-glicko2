@@ -1,49 +1,59 @@
 package com.tjxjnoobie.api.interfaces;
 
 /**
- * Interface for rating calculations and management.
+ * Mutable player-rating state used by the Glicko-2 calculation engine.
+ *
+ * <p>The public rating and rating-deviation values use the ordinary Glicko presentation scale.
+ * Volatility is the Glicko-2 volatility term that controls how quickly rating uncertainty may
+ * change between rating periods. Implementations may expose additional working values used only
+ * while a rating period is being calculated.</p>
  */
 public interface IRating extends org.tavall.dependency.IDependencyInjectableInterface {
 
     /**
-     * Gets the current rating value.
+     * Returns the current estimate of player skill on the ordinary Glicko rating scale.
      *
-     * @return the rating value
+     * @return current skill estimate
      */
     double getRating();
 
     /**
-     * Sets the current rating value.
+     * Replaces the current skill estimate on the ordinary Glicko rating scale.
      *
-     * @param rating the rating to set
+     * @param rating new skill estimate
      */
     void setRating(double rating);
 
     /**
-     * Gets the rating deviation.
+     * Returns the current uncertainty around the skill estimate on the ordinary Glicko scale.
      *
-     * @return the rating deviation
+     * <p>Higher deviation represents less confidence in the current rating.</p>
+     *
+     * @return current rating deviation
      */
     double getRatingDeviation();
 
     /**
-     * Sets the rating deviation.
+     * Replaces the uncertainty around the current skill estimate on the ordinary Glicko scale.
      *
-     * @param deviation the deviation to set
+     * @param deviation new rating deviation
      */
     void setRatingDeviation(double deviation);
 
     /**
-     * Gets the volatility.
+     * Returns the Glicko-2 volatility term for this rating.
      *
-     * @return the volatility value
+     * <p>Volatility models expected fluctuation in the player's underlying skill and participates in
+     * updating rating deviation between periods.</p>
+     *
+     * @return current volatility value
      */
     double getVolatility();
 
     /**
-     * Sets the volatility.
+     * Replaces the Glicko-2 volatility term used by subsequent rating calculations.
      *
-     * @param volatility the volatility to set
+     * @param volatility new volatility value
      */
     void setVolatility(double volatility);
 }
