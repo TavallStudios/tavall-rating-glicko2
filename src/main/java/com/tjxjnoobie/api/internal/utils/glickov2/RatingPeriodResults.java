@@ -5,64 +5,71 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Mutable collection of match results and participants for one Glicko-2 rating period.
+ *
+ * <p>Participants may be registered explicitly even when they have no results, allowing inactivity
+ * handling to update their deviation. Calling {@link #getParticipants()} also folds every
+ * participant discovered in recorded results into the participant set.</p>
+ */
 public class RatingPeriodResults {
     private List<Result> results = new ArrayList<Result>();
     private Set<Rating> participants = new HashSet<Rating>();
 
-
     /**
-     * Create an empty resultset.
+     * Creates an empty rating-period result set.
      */
     public RatingPeriodResults() {}
 
-
     /**
-     * Constructor that allows you to initialise the list of participants.
+     * Creates a rating period backed by an existing participant set.
      *
-     * @param participants (Set of Rating objects)
+     * <p>The set reference is retained directly rather than copied, so later mutations through
+     * either reference are visible to the other.</p>
+     *
+     * @param participants initial participant set
      */
     public RatingPeriodResults(Set<Rating> participants) {
         this.participants = participants;
     }
 
-
     /**
-     * Add a result to the set.
+     * Records a decisive match result for the current rating period.
      *
-     * @param winner
-     * @param loser
+     * @param winner winning participant
+     * @param loser losing participant
+     * @throws IllegalArgumentException if the result cannot represent the supplied participants
      */
     public void addResult(Rating winner, Rating loser) {
         Result result = new Result(winner, loser);
-
         results.add(result);
     }
 
-
     /**
-     * Record a draw between two players and add to the set.
+     * Records a drawn match for the current rating period.
      *
-     * @param player1
-     * @param player2
+     * @param player1 first participant
+     * @param player2 second participant
+     * @throws IllegalArgumentException if the result cannot represent the supplied participants
      */
     public void addDraw(Rating player1, Rating player2) {
         Result result = new Result(player1, player2, true);
-
         results.add(result);
     }
 
-
     /**
-     * Get a list of the results for a given player.
+     * Returns the recorded results in which a participant appears.
      *
-     * @param player
-     * @return List of results
+     * <p>The returned list is a new mutable list; changing it does not change the rating period.</p>
+     *
+     * @param player participant whose matches should be selected
+     * @return matching results in their original recording order
      */
     public List<Result> getResults(Rating player) {
         List<Result> filteredResults = new ArrayList<Result>();
 
-        for ( Result result : results ) {
-            if ( result.participated(player) ) {
+        for (Result result : results) {
+            if (result.participated(player)) {
                 filteredResults.add(result);
             }
         }
@@ -70,15 +77,17 @@ public class RatingPeriodResults {
         return filteredResults;
     }
 
-
     /**
-     * Get all the participants whose results are being tracked.
+     * Returns all participants known to the period, including participants discovered from results.
      *
-     * @return set of all participants covered by the resultset.
+     * <p>This method mutates the internally held participant set by adding result participants and
+     * then returns that same mutable set reference. Callers therefore can change the period's
+     * explicit participant membership through the returned set.</p>
+     *
+     * @return live participant set
      */
     public Set<Rating> getParticipants() {
-        // Run through the results and make sure all players have been pushed into the participants set.
-        for ( Result result : results ) {
+        for (Result result : results) {
             participants.add(result.getWinner());
             participants.add(result.getLoser());
         }
@@ -86,20 +95,21 @@ public class RatingPeriodResults {
         return participants;
     }
 
-
     /**
-     * Add a participant to the rating period, e.g. so that their rating will
-     * still be calculated even if they don't actually compete.
+     * Adds a participant that should receive a rating-period update even when no match result was
+     * recorded for them.
      *
-     * @param rating
+     * @param rating participant to include in the period
      */
     public void addParticipants(Rating rating) {
         participants.add(rating);
     }
 
-
     /**
-     * Clear the resultset.
+     * Removes every recorded match result while preserving the explicit/discovered participant set.
+     *
+     * <p>This is intentionally not a full object reset. Participants remain registered for future
+     * calculations or result additions.</p>
      */
     public void clear() {
         results.clear();
