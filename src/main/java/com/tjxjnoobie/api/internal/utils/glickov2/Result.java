@@ -1,5 +1,12 @@
 package com.tjxjnoobie.api.internal.utils.glickov2;
 
+/**
+ * One head-to-head result consumed by a Glicko-2 rating period.
+ *
+ * <p>A result stores two participant references and either a decisive winner/loser relationship or
+ * a draw marker. Scores are exposed from the perspective of a requested participant as 1.0 for a
+ * win, 0.5 for a draw, and 0.0 for a loss.</p>
+ */
 public class Result {
     private static final double POINTS_FOR_WIN = 1.0;
     private static final double POINTS_FOR_LOSS = 0.0;
@@ -9,15 +16,16 @@ public class Result {
     private Rating winner;
     private Rating loser;
 
-
     /**
-     * Record a new result from a match between two players.
+     * Records a decisive match result.
      *
-     * @param winner
-     * @param loser
+     * @param winner participant that won the match
+     * @param loser participant that lost the match
+     * @throws IllegalArgumentException if both arguments refer to equal ratings, because a
+     *                                  participant cannot play itself
      */
     public Result(Rating winner, Rating loser) {
-        if ( ! validPlayers(winner, loser) ) {
+        if (!validPlayers(winner, loser)) {
             throw new IllegalArgumentException();
         }
 
@@ -25,16 +33,19 @@ public class Result {
         this.loser = loser;
     }
 
-
     /**
-     * Record a draw between two players.
+     * Records a drawn match between two participants.
      *
-     * @param player1
-     * @param player2
-     * @param isDraw (must be set to "true")
+     * <p>The boolean exists only to distinguish this overload from the decisive-result constructor
+     * and must therefore be {@code true}.</p>
+     *
+     * @param player1 first participant; stored in the winner slot for structural compatibility
+     * @param player2 second participant; stored in the loser slot for structural compatibility
+     * @param isDraw must be {@code true}
+     * @throws IllegalArgumentException if {@code isDraw} is false or both participants are equal
      */
     public Result(Rating player1, Rating player2, boolean isDraw) {
-        if (! isDraw || ! validPlayers(player1, player2) ) {
+        if (!isDraw || !validPlayers(player1, player2)) {
             throw new IllegalArgumentException();
         }
 
@@ -43,90 +54,75 @@ public class Result {
         this.isDraw = true;
     }
 
-
-    /**
-     * Check that we're not doing anything silly like recording a match with only one player.
-     *
-     * @param player1
-     * @param player2
-     * @return
-     */
     private boolean validPlayers(Rating player1, Rating player2) {
-        if (player1.equals(player2)) {
-            return false;
-        } else {
-            return true;
-        }
+        return !player1.equals(player2);
     }
 
-
     /**
-     * Test whether a particular player participated in the match represented by this result.
+     * Tests whether a rating is one of the two participants represented by this result.
      *
-     * @param player
-     * @return boolean (true if player participated in the match)
+     * @param player rating to test
+     * @return {@code true} when the rating equals either stored participant
      */
     public boolean participated(Rating player) {
-        if ( winner.equals(player) || loser.equals(player) ) {
-            return true;
-        } else {
-            return false;
-        }
+        return winner.equals(player) || loser.equals(player);
     }
 
-
     /**
-     * Returns the "score" for a match.
+     * Returns this result's score from one participant's perspective.
      *
-     * @param player
-     * @return 1 for a win, 0.5 for a draw and 0 for a loss
-     * @throws IllegalArgumentException
+     * @param player participant whose score should be returned
+     * @return {@code 1.0} for a win, {@code 0.5} for a draw, or {@code 0.0} for a loss
+     * @throws IllegalArgumentException if the supplied rating did not participate in this result
      */
     public double getScore(Rating player) throws IllegalArgumentException {
         double score;
 
-        if ( winner.equals(player) ) {
+        if (winner.equals(player)) {
             score = POINTS_FOR_WIN;
-        } else if ( loser.equals(player) ) {
+        } else if (loser.equals(player)) {
             score = POINTS_FOR_LOSS;
         } else {
             throw new IllegalArgumentException("Player " + player.getName() + " did not participate in match");
         }
 
-        if ( isDraw ) {
+        if (isDraw) {
             score = POINTS_FOR_DRAW;
         }
 
         return score;
     }
 
-
     /**
-     * Given a particular player, returns the opponent.
+     * Resolves the other participant in this result.
      *
-     * @param player
-     * @return opponent
+     * @param player participant whose opponent should be returned
+     * @return the other stored participant
+     * @throws IllegalArgumentException if the supplied rating did not participate in this result
      */
     public Rating getOpponent(Rating player) {
-        Rating opponent;
-
-        if ( winner.equals(player) ) {
-            opponent = loser;
-        } else if ( loser.equals(player) ) {
-            opponent = winner;
-        } else {
-            throw new IllegalArgumentException("Player " + player.getName() + " did not participate in match");
+        if (winner.equals(player)) {
+            return loser;
+        } else if (loser.equals(player)) {
+            return winner;
         }
-
-        return opponent;
+        throw new IllegalArgumentException("Player " + player.getName() + " did not participate in match");
     }
 
-
+    /**
+     * Returns the decisive winner, or the first participant for a drawn result.
+     *
+     * @return participant stored in the winner slot
+     */
     public Rating getWinner() {
         return this.winner;
     }
 
-
+    /**
+     * Returns the decisive loser, or the second participant for a drawn result.
+     *
+     * @return participant stored in the loser slot
+     */
     public Rating getLoser() {
         return this.loser;
     }
