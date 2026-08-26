@@ -21,9 +21,21 @@ java {
 repositories {
     mavenLocal()
     mavenCentral()
+    val token = providers.environmentVariable("GITHUB_TOKEN")
+    if (token.isPresent) {
+        maven {
+            name = "TavallDiPackages"
+            url = uri("https://maven.pkg.github.com/TavallStudios/tavall-di")
+            credentials {
+                username = providers.environmentVariable("GITHUB_ACTOR").orElse("github").get()
+                password = token.get()
+            }
+        }
+    }
 }
 
 dependencies {
+    // Universal Tavall-owned Java consumer baseline. No other shared tools are needed by the pure rating kernel today.
     api("org.tavall:tavall-di:1.0.0")
 }
 
