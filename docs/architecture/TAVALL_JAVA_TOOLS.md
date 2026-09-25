@@ -17,6 +17,6 @@ If one of those concerns becomes real, its canonical owner is:
 
 Do not build a local replacement first and migrate later. Add the owning Tavall tool when the concern appears.
 
-The build resolves Tavall DI from its canonical Tavall Studios package repository when credentials are available, while retaining `mavenLocal()` for local cross-tool development.
+The `tavall-di` coordinate remains repository-owned build intent. Tavall CI resolves it from the exact declared source in the CI composite; internal builds do not depend on `mavenLocal()`, a mutable sibling checkout, or GitHub Packages. Public package publication remains governed by the repository release policy.
 
 Exact Java 25 verification and dependency-lock refresh are required before promotion.

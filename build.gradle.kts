@@ -19,19 +19,7 @@ java {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    val token = providers.environmentVariable("GITHUB_TOKEN")
-    if (token.isPresent) {
-        maven {
-            name = "TavallDiPackages"
-            url = uri("https://maven.pkg.github.com/TavallStudios/tavall-di")
-            credentials {
-                username = providers.environmentVariable("GITHUB_ACTOR").orElse("github").get()
-                password = token.get()
-            }
-        }
-    }
 }
 
 dependencies {
