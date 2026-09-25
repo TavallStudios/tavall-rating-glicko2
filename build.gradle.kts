@@ -19,11 +19,11 @@ java {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
+    // Universal Tavall-owned Java consumer baseline. No other shared tools are needed by the pure rating kernel today.
     api("org.tavall:tavall-di:1.0.0")
 }
 
