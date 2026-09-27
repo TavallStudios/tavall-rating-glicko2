@@ -65,13 +65,13 @@ No tracked license file is present in the current repository tree.
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | PRIMARY | TavallStudios/tavall-rating-glicko2/README.md | 2026-09-27 12:29 PM PDT | Migration PR. |
+| GitHub | PRIMARY | TavallStudios/tavall-rating-glicko2/README.md | 2026-09-27 12:29 PM PDT | https://github.com/TavallStudios/tavall-rating-glicko2/pull/6. |
 | Notion | NOT_APPLICABLE | — | 2026-09-27 12:29 PM PDT | README files are not synchronized as Notion twins. |
 
 ### Update History
 
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2026-09-27 12:29 PM PDT | GitHub | CREATED | TavallStudios/tavall-rating-glicko2/README.md | — | Migration PR. | Reworked the public README to describe the current project, module boundary, usage, and documentation. |
+| 2026-09-27 12:29 PM PDT | GitHub | CREATED | TavallStudios/tavall-rating-glicko2/README.md | — | https://github.com/TavallStudios/tavall-rating-glicko2/pull/6. | Reworked the public README to describe the current project, module boundary, usage, and documentation. |
 
 </details>
