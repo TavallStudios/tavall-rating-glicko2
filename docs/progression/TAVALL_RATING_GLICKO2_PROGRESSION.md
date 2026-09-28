@@ -6,7 +6,7 @@
 > **Owns:** Audited implementation, integration, validation, and historical progression for the Glicko-2 rating library
 > **Does Not Own:** Product evidence policy, persistence, match lifecycle, aggregate system status, deployment history, or Git workflow policy
 > **Audited Against:** `TavallStudios/tavall-rating-glicko2@ec35f280a26b07b5b6340c7ab141e5613715b3a8`
-> **Last Reconciled:** 2026-09-27 7:57 PM PDT
+> **Last Reconciled:** 2026-09-27 8:06 PM PDT
 > **Notion Twin:** [Tavall Rating Glicko-2 — PROGRESSION](https://app.notion.com/p/3e938458ddfd815c93c3caba263b4710)
 ## About
 This record reports what exists in the current main source and what has or has not been verified. The five Java source files and Gradle declarations establish implementation presence; they do not establish algorithm correctness, API stability, package publication, or product adoption.
@@ -69,7 +69,8 @@ The calculator's current defaults are rating 1500, RD 350, volatility 0.06, `tau
 | Tavall DI | Required declared API dependency; source confirms `IRating` extends the DI interface. |
 | Tavall PvP / `novus-ffa` | Product-level documentation describes Glicko-2 rating behavior. Artifact dependency from current in-scope source was not established. |
 | PR #3 | Open Draft against `staging/platform`; exact Java 25 verification and dependency-lock refresh remain pending in the PR body. |
-| PR #6 | Open README documentation PR based on earlier main `acc648d956ec775015cfe4c5b8f896afde0d0fea`; it remains preserved. This documentation branch starts from current main and updates the module doc set. |
+| PR #6 | Open README documentation PR based on earlier main `acc648d956ec775015cfe4c5b8f896afde0d0fea`; it remains preserved. |
+| PR #8 | Open Draft docs-only PR from current main; adds this DESIGN, reconciles PROGRESSION, and routes the README. |
 
 No merge, package publication, runtime deployment, or downstream adoption is recorded by this audit.
 ## Validation & Blockers
@@ -93,14 +94,15 @@ Resolve the consumer API and rating-period lifecycle questions in DESIGN, add de
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PENDING_SYNC` | `TavallStudios/tavall-rating-glicko2/docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md` on `docs/module-design-progression-2026-09-28` | 2026-09-27 7:57 PM PDT | Reconciled to current main `ec35f280a26b07b5b6340c7ab141e5613715b3a8`. |
-| Notion | `PENDING_SYNC` | [Tavall Rating Glicko-2 — PROGRESSION](https://app.notion.com/p/3e938458ddfd815c93c3caba263b4710) | 2026-09-27 7:57 PM PDT | Module-scoped twin under Platform & Infrastructure; content will be synchronized with the GitHub document. |
+| GitHub | `SYNCHRONIZED` | [`docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md`](https://github.com/TavallStudios/tavall-rating-glicko2/blob/docs/module-design-progression-2026-09-28/docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md) | 2026-09-27 8:06 PM PDT | Open Draft [PR #8](https://github.com/TavallStudios/tavall-rating-glicko2/pull/8); reconciled to current main `ec35f280a26b07b5b6340c7ab141e5613715b3a8`. |
+| Notion | `SYNCHRONIZED` | [Tavall Rating Glicko-2 — PROGRESSION](https://app.notion.com/p/3e938458ddfd815c93c3caba263b4710) | 2026-09-27 8:06 PM PDT | 1:1 twin under Platform & Infrastructure; same source baseline, open gates, and history as GitHub. |
 
 ### Update History
 
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2026-09-27 7:57 PM PDT | GitHub | `RECONCILED` | `docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md` | Main document audited against `acc648d956ec775015cfe4c5b8f896afde0d0fea` | Current main source tree and build files at `ec35f280a26b07b5b6340c7ab141e5613715b3a8`. | Corrected the baseline, source inventory, PR state, and distinction between source presence, validation, and adoption. |
+| 2026-09-27 8:06 PM PDT | Notion | `SYNCHRONIZED` | [Module PROGRESSION page](https://app.notion.com/p/3e938458ddfd815c93c3caba263b4710) | New page | Compared with GitHub PROGRESSION in PR #8. | Preserved the historical timeline and current-main evidence. |
 
 </details>
 
