@@ -8,7 +8,7 @@
 > **Owning GENERAL:** Module README
 > **Technical Document:** Current source and Gradle build files
 > **Progression Document:** [Tavall Rating Glicko-2 — PROGRESSION](https://github.com/TavallStudios/tavall-rating-glicko2/blob/docs/module-design-progression-2026-09-28/docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md)
-> **Last Reconciled:** 2026-09-27 7:57 PM PDT
+> **Last Reconciled:** 2026-09-27 8:06 PM PDT
 >
 > **Draft note:** This source-backed draft separates the rating library from Tavall PvP product rules. Design questions that the current source does not settle are listed explicitly below.
 ## About
@@ -96,8 +96,15 @@ Actual results belong in PROGRESSION.
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PENDING_SYNC` | `TavallStudios/tavall-rating-glicko2/docs/design/TAVALL_RATING_GLICKO2_DESIGN.md` on `docs/module-design-progression-2026-09-28` | 2026-09-27 7:57 PM PDT | Source-backed module DESIGN prepared for this review branch. |
-| Notion | `PENDING_SYNC` | [Tavall Rating Glicko-2 — DESIGN](https://app.notion.com/p/3e938458ddfd81738fbbe0d45904739d) | 2026-09-27 7:57 PM PDT | Module-scoped page created under Platform & Infrastructure; synchronize with the GitHub document before marking complete. |
+| GitHub | `SYNCHRONIZED` | [`docs/design/TAVALL_RATING_GLICKO2_DESIGN.md`](https://github.com/TavallStudios/tavall-rating-glicko2/blob/docs/module-design-progression-2026-09-28/docs/design/TAVALL_RATING_GLICKO2_DESIGN.md) | 2026-09-27 8:06 PM PDT | Open Draft [PR #8](https://github.com/TavallStudios/tavall-rating-glicko2/pull/8); DESIGN content synchronized with its Notion twin. |
+| Notion | `SYNCHRONIZED` | [Tavall Rating Glicko-2 — DESIGN](https://app.notion.com/p/3e938458ddfd81738fbbe0d45904739d) | 2026-09-27 8:06 PM PDT | 1:1 twin under Platform & Infrastructure; same contract and lifecycle as the GitHub document. |
+
+### Update History
+
+| Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-27 8:06 PM PDT | GitHub | `CREATED` | `docs/design/TAVALL_RATING_GLICKO2_DESIGN.md` | — | Draft PR #8 against current main. | Added module ownership, consumer shape, validation gates, and explicit open questions. |
+| 2026-09-27 8:06 PM PDT | Notion | `SYNCHRONIZED` | [Module DESIGN page](https://app.notion.com/p/3e938458ddfd81738fbbe0d45904739d) | New page | Compared with GitHub DESIGN in PR #8. | Kept both copies at the same draft lifecycle and contract. |
 
 ## DOC TODO
 - [ ] Confirm the public consumer packages and period-roster behavior.
