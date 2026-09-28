@@ -56,7 +56,8 @@ The library uses Java 25 and declares a conditional Maven publication to GitHub 
 - **Tests:** No `src/test` tree appeared in the audited current-main repository tree.
 - **CI Definition:** No module-local `.tavallci/ci.yaml` was found at audited `main@ec35f280a26b07b5b6340c7ab141e5613715b3a8`. A GitHub Actions Gradle workflow exists; it was not executed as part of this audit.
 - **Platform Adoption:** [PR #3](https://github.com/TavallStudios/tavall-rating-glicko2/pull/3) is an open Draft against `staging/platform`; its body lists exact Java 25 verification and dependency-lock refresh as pending.
-- **README PR:** [PR #6](https://github.com/TavallStudios/tavall-rating-glicko2/pull/6) remains open from earlier `main@acc648d956ec775015cfe4c5b8f896afde0d0fea`. This documentation branch starts from current main and preserves that PR.
+- **README PR:** [PR #6](https://github.com/TavallStudios/tavall-rating-glicko2/pull/6) remains open from earlier `main@acc648d956ec775015cfe4c5b8f896afde0d0fea`; it is preserved.
+- **Current Documentation Review:** [PR #8](https://github.com/TavallStudios/tavall-rating-glicko2/pull/8) is an open Draft against current main for the DESIGN, PROGRESSION, and README routing updates.
 - **Progression:** [Glicko-2 module PROGRESSION](docs/progression/TAVALL_RATING_GLICKO2_PROGRESSION.md)
 - **Shared workflow:** Organization-wide Git policy remains owned by [Tavall Docs](https://github.com/TavallStudios/tavall-docs/blob/main/docs/quality/GIT_WORKFLOW.md).
 
@@ -69,13 +70,13 @@ The library uses Java 25 and declares a conditional Maven publication to GitHub 
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PENDING_REVIEW` | `TavallStudios/tavall-rating-glicko2/README.md` on `docs/module-design-progression-2026-09-28` | 2026-09-27 7:57 PM PDT | README routes to current-main-backed module docs in the same documentation branch. |
+| GitHub | `IN_REVIEW` | `TavallStudios/tavall-rating-glicko2/README.md` on `docs/module-design-progression-2026-09-28` | 2026-09-27 8:06 PM PDT | Draft PR #8 updates README routes alongside current-main-backed module docs. |
 | Notion | `NOT_APPLICABLE` | — | — | Repository README; no 1:1 pairing is required. |
 
 ### Update History
 
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2026-09-27 7:57 PM PDT | GitHub | `UPDATED` | `TavallStudios/tavall-rating-glicko2/README.md` | README DUS based on `acc648d956ec775015cfe4c5b8f896afde0d0fea` | Current main `ec35f280a26b07b5b6340c7ab141e5613715b3a8` | Added the Design route and refreshed source/validation boundaries. |
+| 2026-09-27 7:57 PM PDT | GitHub | `UPDATED` | `TavallStudios/tavall-rating-glicko2/README.md` | README DUS based on `acc648d956ec775015cfe4c5b8f896afde0d0fea` | Current main `ec35f280a26b07b5b6340c7ab141e5613715b3a8` | Added the Design route and refreshed source/validation boundaries in Draft PR #8. |
 
 </details>
