@@ -5,13 +5,16 @@ source: https://github.com/TavallStudios/tavall-docs/blob/main/TODO.md
 repository: TavallStudios/tavall-rating-glicko2
 managed-by: TavallStudios/tavall-github-bot
 format-version: 1
-source-commit: 90eaa0e74b32cf27faf4cf147e165d0eb868da1c
-synced-at: 2026-10-01T20:40:52-07:00
+source-commit: 116ed18e1dfb714cf4640468ea723107be9010e0
+synced-at: 2026-10-02T04:30:00Z
 -->
 
 ## Repository TODO
 
-_No open global TODO items currently tracked._
+#### System — Tavall Rating Glicko-2
+
+- [ ] 2026-10-02 — Promote immutable rating calculation engine to `main`.
+  - Verify match rating and confidence interval computations against standard test vectors.
 
 ## Global authority
 
